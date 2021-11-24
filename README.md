@@ -1,3 +1,6 @@
+
+The original owner of the repositiory is https://github.com/simondiep/node-multiplayer-snake
+
 [![](node-multiplayer-snake.gif)](https://node-multiplayer-snake.herokuapp.com/)
 ![Alt](snake.gif)
 [![Build Status](https://travis-ci.org/simondiep/node-multiplayer-snake.svg?branch=master)](https://travis-ci.org/simondiep/node-multiplayer-snake)
