@@ -1,127 +1,113 @@
 # Node Multiplayer Snake Game
 
+A simple **Node.js multiplayer game** published as a **sample deployment project for Nife.io**.
+
+This repository demonstrates how to run a real-time multiplayer application locally, package it with Docker, and deploy it on Nife.io. It is intended as a practical sample for validating Node.js deployment workflows, container-based delivery, and real-time communication systems.
+
+---
+
 ## Overview
 
-A multiplayer snake game built using Node.js, Express, Socket.IO, and modern JavaScript (ES6).
+This project is a real-time multiplayer snake game built using Node.js, Express, and Socket.IO. It demonstrates server-client synchronization using WebSockets along with interactive browser-based gameplay.
 
-This project demonstrates:
-- Real-time multiplayer communication
-- Interactive browser-based gameplay
-- Server-client synchronization using WebSockets
-
-Originally based on:
-https://github.com/simondiep/node-multiplayer-snake
+If you want a simple real-time backend project to test deployment on Nife.io, this repository is a good starting point.
 
 ---
 
 ## Features
 
-- Quick join gameplay (no sign-up required)
-- Player customization (name, color)
-- Admin controls (speed, food, bots, player length)
-- Multiple food types
-- Upload custom snake and background images
-- Player statistics (kills, deaths, score)
-- Spectator mode
-- Game notifications and kill announcements
-- Randomized spawns
-- Local storage for user preferences
-- Interactive walls (add/remove by clicking)
-- Sound effects
+| Feature               | Description                           |
+| --------------------- | ------------------------------------- |
+| Multiplayer gameplay  | Real-time interaction between players |
+| Socket.IO integration | Enables WebSocket-based communication |
+| Player customization  | Name and color selection              |
+| Admin controls        | Adjust speed, bots, food settings     |
+| Spectator mode        | Watch ongoing matches                 |
+| Statistics tracking   | Score, kills, and deaths              |
+| Custom assets         | Upload snake and background images    |
+| Interactive gameplay  | Walls, effects, and notifications     |
 
 ---
 
-## Requirements
+## Tech Stack
 
-Make sure you have the following installed:
-
-- Node.js (v8 or higher recommended)
-- npm (comes with Node.js)
-- Git
+| Technology | Purpose                 |
+| ---------- | ----------------------- |
+| Node.js    | Runtime environment     |
+| Express    | Web framework           |
+| Socket.IO  | Real-time communication |
+| JavaScript | Application logic       |
+| Docker     | Containerization        |
+| Nife.io    | Deployment platform     |
 
 ---
 
-## Installation
+## Prerequisites
 
-### 1. Clone the Repository
+Before running the project locally, make sure the following are installed.
+
+| Requirement | Notes                        |
+| ----------- | ---------------------------- |
+| Node.js     | Version 8 or higher          |
+| npm         | Comes with Node.js           |
+| Git         | Required to clone repository |
+
+---
+
+## Getting Started
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/simondiep/node-multiplayer-snake.git
 cd node-multiplayer-snake
 ```
 
----
-
-### 2. Install Dependencies
+### Install dependencies
 
 ```bash
 npm install
 ```
 
----
-
-### 3. Run the Application
+### Run the application
 
 ```bash
 npm start
 ```
 
----
-
-### 4. Open in Browser
-
-Visit:
-
-```
-http://localhost:3000
-```
+Then open the application at `http://localhost:3000`.
 
 ---
 
-## Game Flow
+## Run with Docker
 
-```text
-1. User joins game
-2. Server assigns player
-3. Real-time updates via Socket.IO
-4. Game state synced across clients
-5. Score updates and events triggered
-```
+This project includes a Dockerfile for container-based execution.
 
----
+### Build the image
 
-## Contributing
-
-1. Fork the repository  
-2. Create a new branch  
-3. Make your changes  
-4. Run tests:
 ```bash
-npm test
+docker build -t node-multiplayer-snake .
 ```
-5. Submit a pull request  
+
+### Run the container
+
+```bash
+docker run -p 3000:3000 node-multiplayer-snake
+```
+
+After the container starts, open the app at `http://localhost:3000`.
 
 ---
 
-## Deployment on NIFE
+## Deploy on Nife.io
 
-Deploy your application using the NIFE platform:
-
-https://launch.nife.io/
-
-Deployment flow:
-
-```text
-Source → Build → Resources → Review → Deploy
-```
-
-Prerequisite: Ensure a workload (Deployment, CronJob, or StatefulSet) exists.
+You can deploy this application on Nife.io using either a Docker image, the source repository, or the CLI.
 
 ---
 
-## Method 1: Deploy via Docker Image (Recommended)
+### Option 1: Deploy from a Docker image
 
-### Step 1: Build and Push Image
+First, build and push the image to your preferred container registry.
 
 ```bash
 docker build -t node-multiplayer-snake .
@@ -129,245 +115,93 @@ docker tag node-multiplayer-snake <username>/node-multiplayer-snake:latest
 docker push <username>/node-multiplayer-snake:latest
 ```
 
----
+Then configure a new application in Nife.io with the following settings.
 
-### Step 2: Configure Source
-
-- Source: Docker Image
-- Registry: Docker Hub
-- Image: `<username>/node-multiplayer-snake:latest`
-- Tag: `latest`
-
----
-
-### Step 3: Build Configuration
-
-- Internal Port: `3000`
-- External Port: `80`
-
-Optional environment variables:
-
-| Key      | Value      |
-|----------|------------|
-| NODE_ENV | production |
+| Setting            | Value                                      |
+| ------------------ | ------------------------------------------ |
+| Source             | Docker Image                               |
+| Registry           | Docker Hub or another supported registry   |
+| Image              | `<username>/node-multiplayer-snake:latest` |
+| Internal Port      | `3000`                                     |
+| External Port      | `80`                                       |
+| Suggested Replicas | `1`                                        |
 
 ---
 
-### Step 4: Resources Configuration
+### Option 2: Deploy from the Git repository
 
-- Region: e.g., `ap-south-1`
-- Resource Type: CPU
+You can also deploy the project directly from GitHub.
 
-Recommended settings:
-
-- CPU Request: `250m`
-- Memory Request: `512MB`
-- CPU Limit: `500m`
-- Memory Limit: `1GB`
-
----
-
-### Step 5: Deploy
-
-- Strategy: Rolling
-- Workload: Deployment
-- Routing Policy: Latency
-- Replicas: 1–2
-
-Click **Deploy**.
+| Setting       | Value                       |
+| ------------- | --------------------------- |
+| Source        | Git Repository              |
+| Provider      | GitHub                      |
+| Branch        | `main`                      |
+| Internal Port | `3000`                      |
+| External Port | `80`                        |
+| Build Mode    | Auto-Dockerize with runtime |
 
 ---
 
-## Method 2: Deploy via Git Repository
+### Option 3: Deploy with `nifectl`
 
-### Step 1: Select Source
-
-- Source: Git Repository
-- Provider: GitHub
-- Branch: `main`
-
----
-
-### Step 2: Build Configuration
-
-- Internal Port: `3000`
-- External Port: `80`
-
-Enable:
-
-```
-Auto-Dockerize with Runtime
-```
-
----
-
-### Step 3: Build and Security
-
-NIFE automatically performs:
-
-- SAST
-- SCA
-- Container scan
-- IaC scan
-
-Resolve any critical issues before proceeding.
-
----
-
-### Step 4: Resources and Deploy
-
-Use the recommended configuration above and deploy.
-
----
-
-## Deployment using nifectl (CLI)
-
-You can deploy the application using the nifectl CLI.
-
----
-
-### Step 1: Download nifectl
-
-https://docs.nife.io/Quick-Start/Nifectl
-
----
-
-### Step 2: Open Terminal
-
-- Type `cmd` in the address bar  
-  OR  
-- Right-click → **Open in Terminal**
-
----
-
-### Step 3: Verify Installation
-
-```bash
-nifectl --help
-```
-
----
-
-## Deployment Steps
-
-### Step 1: Login
+If you prefer the command line, use the following workflow.
 
 ```bash
 nifectl auth login
-```
-
----
-
-### Step 2: Initialize Project
-
-```bash
 nifectl init
-```
-
-Provide:
-- Application name
-- Organization
-- Repository URL
-- Branch (`main`)
-
----
-
-### Step 3: Configure Deployment
-
-- Deployment Type: Deployment
-- Resource Type: CPU
-- Replicas: 1
-
-Ports:
-- Internal: `3000`
-- External: `80`
-
----
-
-### Step 4: Deploy
-
-```bash
 nifectl deploy
 ```
 
----
-
-### Step 5: Select Region
-
-Example:
-
-```
-IND - Mumbai
-```
-
----
-
-### Step 6: Monitor Deployment
-
-Monitor logs for:
-- Validation
-- Build
-- Deployment
-
----
-
-### Step 7: Access Application
-
-```
-https://<your-nife-url>
-```
-
----
-
-## Dependencies
-
-| Dependency  | Purpose                 |
-|-------------|-------------------------|
-| Node.js     | Runtime environment     |
-| Express     | Web framework           |
-| Socket.IO   | Real-time communication |
-| JavaScript  | Application logic       |
+For step-by-step instructions, see the Nife.io Quick Deploy documentation and the nifectl quick start guide.
 
 ---
 
 ## Environment Variables
 
-| Variable | Description             | Default     |
-|----------|-------------------------|-------------|
-| NODE_ENV | Application environment | development |
-| PORT     | Server port             | 3000        |
+The following variables are commonly relevant for deployment.
+
+| Variable | Description             | Example      |
+| -------- | ----------------------- | ------------ |
+| NODE_ENV | Application environment | `production` |
+| PORT     | Server port             | `3000`       |
+
+---
+
+## Repository Structure
+
+| Path           | Purpose                      |
+| -------------- | ---------------------------- |
+| `public/`      | Frontend assets              |
+| `src/`         | Server-side logic            |
+| `Dockerfile`   | Container build instructions |
+| `package.json` | Project dependencies         |
+| `server.js`    | Entry point                  |
 
 ---
 
 ## Troubleshooting
 
-| Issue                      | Solution                                    |
-|---------------------------|---------------------------------------------|
-| Port already in use       | Change port or stop process                 |
-| Node not installed        | Install Node.js (`node -v`)                 |
-| Dependencies not installed| Run `npm install`                           |
-| App not starting          | Check logs and Node version                 |
-| Docker not running        | Start Docker                               |
-| Deployment fails on NIFE  | Check logs and configuration               |
-| App not accessible        | Verify port mapping and routing            |
+| Issue                       | Suggested fix                           |
+| --------------------------- | --------------------------------------- |
+| Port 3000 already in use    | Stop conflicting process or change port |
+| Dependencies not installed  | Run `npm install`                       |
+| App not starting            | Check logs and Node version             |
+| Docker build fails          | Verify Dockerfile                       |
+| Deployment fails on Nife.io | Check ports and configuration           |
+| App not accessible          | Verify routing and logs                 |
 
 ---
 
 ## Acknowledgements
 
-This repository is maintained by Nifetency as a sample deployment project for Nife.io.
+This project is based on the original work:
+https://github.com/simondiep/node-multiplayer-snake
 
-If this repository is derived from an earlier template or upstream example, it is good practice to retain visible credit to the original author or source repository.
+Maintained as a deployment sample for Nife.io.
 
 ---
 
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-## References
-
-- Original Repository: https://github.com/simondiep/node-multiplayer-snake
-- NIFE Platform: https://nife.io/
