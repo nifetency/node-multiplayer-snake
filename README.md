@@ -153,9 +153,10 @@ nifectl init
 nifectl deploy
 ```
 
-For step-by-step instructions, see the Nife.io Quick Deploy documentation and the nifectl quick start guide.
-
----
+For step-by-step instructions, see the 
+[Nife.io Quick Deploy documentation](https://docs.nife.io/overview/quick-deploy) 
+and the 
+[nifectl quick start guide](https://docs.nife.io/Quick-Start/Nifectl).
 
 ## Environment Variables
 
