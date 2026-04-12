@@ -352,3 +352,22 @@ https://<your-nife-url>
 | App not accessible        | Verify port mapping and routing            |
 
 ---
+
+## Acknowledgements
+
+This repository is maintained by Nifetency as a sample deployment project for Nife.io.
+
+If this repository is derived from an earlier template or upstream example, it is good practice to retain visible credit to the original author or source repository.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## References
+
+- Original Repository: https://github.com/simondiep/node-multiplayer-snake
+- NIFE Platform: https://nife.io/
