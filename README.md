@@ -105,30 +105,8 @@ You can deploy this application on Nife.io using either a Docker image, the sour
 
 ---
 
-### Option 1: Deploy from a Docker image
 
-First, build and push the image to your preferred container registry.
-
-```bash
-docker build -t node-multiplayer-snake .
-docker tag node-multiplayer-snake <username>/node-multiplayer-snake:latest
-docker push <username>/node-multiplayer-snake:latest
-```
-
-Then configure a new application in Nife.io with the following settings.
-
-| Setting            | Value                                      |
-| ------------------ | ------------------------------------------ |
-| Source             | Docker Image                               |
-| Registry           | Docker Hub or another supported registry   |
-| Image              | `<username>/node-multiplayer-snake:latest` |
-| Internal Port      | `3000`                                     |
-| External Port      | `80`                                       |
-| Suggested Replicas | `1`                                        |
-
----
-
-### Option 2: Deploy from the Git repository
+### Option 1: Deploy from the Git repository
 
 You can also deploy the project directly from GitHub.
 
@@ -143,7 +121,7 @@ You can also deploy the project directly from GitHub.
 
 ---
 
-### Option 3: Deploy with `nifectl`
+### Option 2: Deploy with `nifectl`
 
 If you prefer the command line, use the following workflow.
 
@@ -196,13 +174,20 @@ The following variables are commonly relevant for deployment.
 
 ## Acknowledgements
 
-This project is based on the original work:
-https://github.com/simondiep/node-multiplayer-snake
+This repository is maintained by **Nifetency** as a sample deployment project for [Nife.io](https://nife.io).
 
-Maintained as a deployment sample for Nife.io.
-
+If this repository is derived from an earlier template or upstream example, it is good practice to retain visible credit to the original author or source repository.
 ---
 
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+## References
+
+1. [Nife.io](https://nife.io)
+2. [Nife Docs Overview](https://docs.nife.io/overview/)
+3. [Original Repository](https://github.com/nifetency/node-multiplayer-snake.git)
+4. [Nife Quick Start](https://docs.nife.io/Quick-Start)
