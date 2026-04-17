@@ -187,7 +187,6 @@ This project is licensed under the MIT License.
 
 ## References
 
-1. [Nife.io](https://nife.io)
-2. [Nife Docs Overview](https://docs.nife.io/overview/)
-3. [Original Repository](https://github.com/nifetency/node-multiplayer-snake.git)
-4. [Nife Quick Start](https://docs.nife.io/Quick-Start)
+1. (https://nife.io)
+2. (https://docs.nife.io/deploy/node)
+
